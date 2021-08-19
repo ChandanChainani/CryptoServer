@@ -80,7 +80,7 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 	http.NotFound(w, r)
 }
 
-func GetCryptoDataThroughSocket() {
+func SubscribeCryptoDataThroughSocket() {
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
@@ -112,7 +112,6 @@ func GetCryptoDataThroughSocket() {
 					log.Println("read:", err)
 					return
 				}
-				// log.Printf("recv: %s", message)
 				
 				if data, ok := message["data"]; ok {
 					if message, ok = data.(map[string]interface{}); ok {
@@ -147,5 +146,5 @@ func main() {
 		log.Fatal(http.ListenAndServe(":8080", nil))
 	}()
 
-	GetCryptoDataThroughSocket()
+	SubscribeCryptoDataThroughSocket()
 }
