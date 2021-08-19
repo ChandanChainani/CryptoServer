@@ -68,7 +68,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	respData, err := json.Marshal(body)
 	if err != nil {
 		// handle error
-		log.Warn(err)
+		log.Println(err)
 		w.WriteHeader(500)
 		return
 	}
