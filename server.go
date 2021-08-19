@@ -6,6 +6,7 @@ import (
 	"time"
 	"os"
 	"os/signal"
+	"syscall"
 
 	"regexp"
 	"net/http"
@@ -81,7 +82,7 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetCryptoDataThroughSocket() {
 	interrupt := make(chan os.Signal, 1)
-	signal.Notify(interrupt, os.Interrupt)
+	signal.Notify(interrupt, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
 	ticker := time.NewTicker(SYNC_TIME * time.Second)
 
