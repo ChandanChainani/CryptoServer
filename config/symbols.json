@@ -1,0 +1,10 @@
+{
+  "BTCUSD": {
+    "fullName": "Ethereum",
+    "feeCurrency": "USD"
+  },
+  "ETHBTC": {
+    "fullName": "Bitcoin",
+    "feeCurrency": "BTC"
+  }
+}
